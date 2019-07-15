@@ -12,7 +12,7 @@ Supported
 
 ```yaml
 dependencies:
-  flutter_youtube_player: ^0.0.3
+  flutter_youtube_player: ^1.0.0
 ```
 
 ## Imports
@@ -38,3 +38,8 @@ FlutterYoutubePlayer(
 | apiKey     | String (Not Null)  |
 | videoId    | String (Not Null)  |
 | autoPlay   | Boolean (Optional) | true    |
+
+
+## Example
+
+[Click here for complete example](https://pub.dev/packages/flutter_youtube_player#-example-tab- "flutter_youtube_player example")

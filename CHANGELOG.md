@@ -1,3 +1,6 @@
+## 1.0.0
+Updated main dart file as per flutter suggestions.
+
 ## 0.0.3
 
 Added GIT Repository

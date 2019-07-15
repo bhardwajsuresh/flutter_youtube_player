@@ -1,6 +1,6 @@
 name: flutter_youtube_player
-description: A new Flutter plugin for playing inline youtube videos. It is available only for Android and uses official android Youtube Player API. This plugin provides a FlutterYoutubePlayer widget which can be embedded in app like any other widget.
-version: 0.0.3
+description: A new Flutter plugin for playing inline youtube videos.
+version: 1.0.0
 author: Suresh Kumar <sureshbhardwaj@gmail.com>
 homepage: https://github.com/bhardwajsuresh/flutter_youtube_player
 
