@@ -12,7 +12,7 @@ Supported
 
 ```yaml
 dependencies:
-  flutter_youtube_player: ^0.0.2
+  flutter_youtube_player: ^0.0.3
 ```
 
 ## Imports
