@@ -26,14 +26,48 @@ class FlutterYoutubePlayer extends StatefulWidget {
   }
 }
 
-class _FlutterYoutubePlayerState extends State<FlutterYoutubePlayer> {
-  //static const MethodChannel _channel = const MethodChannel('flutter_youtube_player');
+class _FlutterYoutubePlayerState extends State<FlutterYoutubePlayer>  with WidgetsBindingObserver {
+  MethodChannel _channel;
+
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch(state){
+      case AppLifecycleState.paused:
+        print('paused state');
+        if(_channel != null)
+        {
+          _channel.invokeMapMethod("pause");
+        }
+        break;
+      case AppLifecycleState.resumed:
+        print('resumed state');
+        break;
+      case AppLifecycleState.inactive:
+        print('inactive state');
+        break;
+      case AppLifecycleState.suspending:
+        print('suspending state');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     if (defaultTargetPlatform == TargetPlatform.android) {
-      //print(widget.apiKey);
-      //Uint8List encoded = const Utf8Codec().encoder.convert(widget.apiKey);
 
       Map <String, dynamic> settings = {
         "apiKey" : widget.apiKey,
@@ -56,19 +90,6 @@ class _FlutterYoutubePlayerState extends State<FlutterYoutubePlayer> {
 
   void _onPlatformViewCreated(int id) {
     print(id);
-    //FlutterYoutubePlayerController._(id);
-
-    //_channel.invokeMethod('setText', "hello");
+    _channel = new MethodChannel('com.sureshb.flutteryoutubeplugin/$id');
   }
 }
-//class FlutterYoutubePlayerController {
-//  FlutterYoutubePlayerController._(int id)
-//      : _channel = new MethodChannel('flutter_youtube_player/textview_$id');
-//
-//  final MethodChannel _channel;
-//
-//  Future<void> play(String text) async {
-//    assert(text != null);
-//    return _channel.invokeMethod('setText', text);
-//  }
-//}

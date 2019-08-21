@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 
 public class YouTubePlayerViewUtils {
 
-    public static YouTubePlayerView createYouTubePlayerView(final Context context, String api_key, final OnYoutubePlayerInitializedSucess listener, final Activity activity) {
+    public static YouTubePlayerView createYouTubePlayerView(final Context context, String api_key, final OnYoutubePlayerInitializedSucess listener, final Activity activity)
+    {
         // create YoutubePlayerView by private-package constructor
 
 
@@ -63,7 +64,7 @@ public class YouTubePlayerViewUtils {
                 for (int i=0;i<viewgroup.getChildCount();i++) {
                     View v1=viewgroup.getChildAt(i);
                     String view_name = v1.toString();
-                    Log.d("COM.SURESHB.FLUTTERY...",view_name);
+                    //Log.d("COM.SURESHB.FLUTTERY...",view_name);
 
                     if(view_name.contains("io.flutter.plugin.platform.SingleViewPresentation$FakeWindowViewGroup"))
                     {

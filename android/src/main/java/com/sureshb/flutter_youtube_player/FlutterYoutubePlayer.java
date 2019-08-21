@@ -1,3 +1,6 @@
+/*
+    reference https://medium.com/flutter-community/flutter-platformview-how-to-create-flutter-widgets-from-native-views-366e378115b6
+*/
 package com.sureshb.flutter_youtube_player;
 
 import android.app.Activity;
@@ -31,38 +34,41 @@ public class FlutterYoutubePlayer implements PlatformView, MethodCallHandler, On
         settings = s;
         player = null;
         youTubePlayerView = YouTubePlayerViewUtils.createYouTubePlayerView(context, (String) settings.get("apiKey"), this , activity);
-        methodChannel = new MethodChannel(messenger, "com.sureshb.flutteryoutubeplugin" );
+        methodChannel = new MethodChannel(messenger, "com.sureshb.flutteryoutubeplugin/" + id );
         methodChannel.setMethodCallHandler(this);
     }
 
     @Override
     public View getView() {
+
+
+
         return youTubePlayerView;
     }
 
     @Override
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
         switch (methodCall.method) {
-//            case "setText":
-//                setText(methodCall, result);
-//                break;
+            case "pause":
+                pause();
+                result.success(null);
+                break;
             default:
                 result.notImplemented();
         }
     }
 
-//    private void setText(MethodCall methodCall, Result result) {
-//        String text = (String) methodCall.arguments;
-//        youTubePlayerView.setText(text);
-//        result.success(null);
-//    }
-
-    @Override
-    public void dispose() {
+    private void pause()
+    {
         if(player!= null)
         {
             player.pause();
         }
+    }
+
+    @Override
+    public void dispose() {
+        pause();
     }
 
     @Override
@@ -80,4 +86,5 @@ public class FlutterYoutubePlayer implements PlatformView, MethodCallHandler, On
             player.cueVideo((String)settings.get("videoId"));
         }
     }
+
 }
